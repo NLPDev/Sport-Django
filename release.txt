@@ -1,0 +1,385 @@
+Release Note
+=============
+psr-0.1.28
+-------------
+September 14, 2017
+
+Bug fixes:
+* PSR-425: Return to Play BE DEV
+
+New features:
+
+
+* * *
+
+psr-0.1.27
+-------------
+September 6, 2017
+
+Bug fixes:
+* PSR-369: Duplicated coach on athlete's account
+
+New features:
+
+
+* * *
+
+psr-0.1.26
+-------------
+September 5, 2017
+
+Bug fixes:
+* PSR-382: Update Assessment Titles
+* PSR-416: Re-sending invites fails
+* PSR-398: Refactor and clean up codebase.
+
+New features:
+
+
+* * *
+
+
+psr-0.1.25
+-------------
+September 1 , 2017
+
+Bug fixes:
+* PSR-400: [Pending invites] Adding same athlete to two teams
+
+New features:
+
+
+* * *
+
+
+psr-0.1.24
+-------------
+September 1 , 2017
+
+Bug fixes:
+* PSR-400: [Pending invites] Adding same athlete to two teams
+* PSR-415: Need to remove green badge from badges model
+
+New features:
+
+
+* * *
+
+
+psr-0.1.23
+-------------
+August 31, 2017
+
+Bug fixes:
+* PSR-403: Updates to videos endpoints
+
+New features:
+
+
+* * *
+
+psr-0.1.22
+-------------
+August 31, 2017
+
+Bug fixes:
+* PSR-364: User Profile Update - Achievements Backend Development
+
+New features:
+
+
+* * *
+
+psr-0.1.21
+-------------
+August 30, 2017
+
+Bug fixes:
+* PSR-403: Updates to videos endpoints
+
+New features:
+
+* * *
+
+psr-0.1.20
+-------------
+August 29, 2017
+
+Bug fixes:
+*PSR-396: Move "hydration" metric to the end of the pre-competition assessment
+
+New features:
+
+* * *
+
+psr-0.1.19
+-------------
+August 29, 2017
+
+Bug fixes:
+
+New features:
+* PSR-364: User Profile Update - Achievements Backend Development
+
+* * *
+
+psr-0.1.18
+-------------
+August 28, 2017
+
+Bug fixes:
+* PSR-354: PRE-COMP ASSESSMENT- BE-DEV
+
+New features:
+* PSR-366: User Profile Update - Videos Backend Development 
+
+* * *
+
+psr-0.1.17
+-------------
+August 25, 2017
+
+Bug fixes:
+
+New features:
+* PSR-354: PRE-COMP ASSESSMENT- BE-DEV
+
+* * *
+
+psr-0.1.16
+-------------
+August 24, 2017
+
+Bug fixes:
+
+New features:
+* PSR-368: Endpoint for re-sending pending invite
+* PSR-354: PRE-COMP ASSESSMENT- BE-DEV
+
+* * *
+
+psr-0.1.15
+-------------
+August 23, 2017
+
+Bug fixes:
+
+New features:
+* PSR-365: User Profile Update - Goals Development
+
+* * *
+
+psr-0.1.14
+-------------
+August 22, 2017
+
+Bug fixes:
+* PSR-360: Spelling Mistake - Basketball Assessment
+* PSR-345: Coach team owner should not be able to also be a team member
+
+New features:
+* PSR-287: Endpoint for canceling an individual endpoint or clearing all pending invites
+
+* * *
+
+psr-0.1.13
+-------------
+August 18, 2017
+
+Bug fixes:
+* PSR-357: Teams endpoint not returning team owner coach in directory listing of coaches
+
+New features:
+* PSR-348: Team profile pictures unique filenames, downsized, auto-rotate
+* PSR-288: Endpoint for listing all pending invites for a user or team
+
+* * *
+
+psr-0.1.12
+-------------
+August 16, 2017
+
+Bug fixes:
+* PSR-344: Invited coach should see other coaches of the team, and team in its settings: 
+* PSR-347: Fix coach permissions for coach invited to team
+
+New features:
+
+* * *
+
+
+psr-0.1.11
+-------------
+August 15, 2017
+
+Bug fixes:
+*   : avoid image names to be overriden 
+
+New features:
+
+* * *
+
+
+psr-0.1.10
+-------------
+August 15, 2017
+
+Bug fixes:
+* PSR-341: Error when coach invites another coach through team.
+
+New features:
+
+* * *
+
+
+psr-0.1.9
+-------------
+August 15, 2017
+
+Bug fixes:
+* PSR-328: Coach permissions show duplicates (Settings)
+
+New features:
+
+* * *
+
+psr-0.1.8
+-------------
+August 15, 2017
+
+Bug fixes:
+* PSR-337: Team name should not be required to be unique
+* PSR-328: Coach permissions show duplicates (Settings)
+* PSR-342: Newly created Athlete should be granted by default on team owner
+
+New features:
+
+* * *
+
+
+psr-0.1.7
+-------------
+August 15, 2017
+
+Bug fixes:
+* PSR-278: Create an endpoint for revoking membership from a team
+
+New features:
+
+* * *
+
+
+psr-0.1.6
+-------------
+August 15, 2017
+
+Bug fixes:
+* PSR-313: Application not listing coaches connected through teams
+* PSR-337: Team name should not be required to be unique
+* PSR-336: error from latest_assessment endpoint error
+
+
+New features:
+
+* * *
+
+
+psr-0.1.5
+-------------
+August 11, 2017
+
+Bug fixes:
+* PSR-165: User link invite token persists after revoke
+
+New features:
+* PSR-305: update assessment permissions to manage teams
+
+* * *
+
+
+psr-0.1.4
+-------------
+August 10, 2017
+
+Bug fixes:
+
+New features:
+* PSR-281: Team assessments endpoint: /api/teams/<TID>/assessments/
+
+* * *
+
+
+psr-0.1.3
+-------------
+August 09, 2017
+
+Bug fixes:
+
+New features:
+* PSR-208: Develop custom Stripe webhook signature verification 
+* PSR-157: Need to downsize user profile picture
+
+* * *
+
+
+psr-0.1.2
+-------------
+August 08, 2017
+
+Bug fixes:
+
+New features:
+* PSR-282: Add season and tagline to team_ownerships and team_memberships (User's profile)
+
+* * *
+
+psr-0.1.1
+-------------
+August 08, 2017
+
+Bug fixes:
+
+New features:
+* PSR-275: Create a Team Editing Endpoint
+* PSR-274: Team Creation Endpoint
+* PSR-273: Team Model Creation
+* PSR-279: Upgrade user details endpoint to return team_memberships and team_ownerships
+* PSR-280: Add team to ChosenAssessment
+* PSR-263: Feature: Pending Invites 
+
+* * *
+
+
+psr-0.1.0
+-------------
+July 28, 2017
+
+Bug fixes:
+
+New features:
+* PSR-260: Create "Cancel Membership" API endpoint and hook up to FE
+
+* * *
+
+psr-0.0.1
+-------------
+July 26, 2017
+
+Bug fixes:
+* PSR-253: Stripe payment - Prod - Error 500
+
+
+* * *
+
+
+
+psr-0.0.0
+-------------
+July 21, 2017
+
+Bug fixes:
+* PSR-194: Athlete profile completion redirect (payment_status)
+* PSR-110: Email Template Copy
+
+
+* * *
