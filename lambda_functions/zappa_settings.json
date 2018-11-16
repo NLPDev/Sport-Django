@@ -1,0 +1,18 @@
+{
+    "dev": {
+        "aws_region": "ca-central-1", 
+        "profile_name": "eb-cli", 
+        "project_name": "lambdas", 
+        "runtime": "python3.6", 
+        "s3_bucket": "zappa-t0z8kqzpt"
+        "keep_warm": false,
+        "environment_variables": {
+           "DISABLE_EXPIRED_CUSTOMERS_TOKEN": "nAEoscqJ5DM3CXch6t&ZvDbt5kR1xce5FDbv#6d1XPGwaCd%LUr@^T5ThUA$a*y4",
+           "EXPIRE_USER_WEB_HOOK": "https://dev.api.personalsportrecord.com/api/disable-expired-customers/"
+        },
+        "events": [{
+           "function": "functions.expire_users", // The function to execute
+           "expression": "rate(30 minutes)" // When to execute it (in cron or rate format)
+       }],
+    }
+}
