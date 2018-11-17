@@ -1,0 +1,17 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block branding %}
+<h1 id="site-name">
+    {{ site_header|default:_('Administration') }}
+
+    {% if user.is_authenticated %}
+        Switch to:
+        <a href="/admin/ca/" onMouseOver="this.style.color='#79aec8'" onMouseOut="this.style.color=''">ca</a>
+        |
+        <a href="/admin/us/" onMouseOver="this.style.color='#79aec8'" onMouseOut="this.style.color=''">us</a>
+        |
+        <a href="/admin/" onMouseOver="this.style.color='#79aec8'" onMouseOut="this.style.color=''">default</a>
+    {% endif %}
+</h1>
+{% endblock %}
