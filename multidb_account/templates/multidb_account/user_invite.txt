@@ -1,0 +1,15 @@
+Hi {{recipient.first_name}}
+
+Sweet! You've been invited to join {{requester.user_type}} {{requester.first_name}} {{requester.last_name}} on personal sport record. Sign in and connect with them now.
+{{app_site}}{{ user_invite_path}}{{ recipient_type }}/{{ requester.user_type }}/{{ requester_name|urlencode }}/{{ token }}
+
+Thank you!
+
+Thanks, Matt & Steve
+Personal Sport Record
+
+451 Silverdale Place, Vancouver, BC, V7N 2Z6, Canada
+http://personalsportrecord.com/contact-us/
+http://personalsportrecord.com/about-us/
+http://personalsportrecord.com/privacy-policy/
+href="http://personalsportrecord.com/

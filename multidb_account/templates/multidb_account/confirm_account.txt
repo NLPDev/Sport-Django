@@ -1,0 +1,16 @@
+Hi {{user.first_name}} {{user.last_name}} {{user.email}}
+
+You've been invited to personal sport record.
+
+Please confirm that {{user.email}} is an e-mail address owned by you.
+
+Click the link below.
+{{api_site}}{{ confirm_account_path }}{{ token }}
+
+Thanks, Matt & Steve
+Personal Sport Record
+
+451 Silverdale Place, Vancouver, BC, V7N 2Z6, Canada
+http://personalsportrecord.com/contact-us/
+http://personalsportrecord.com/about-us/
+http://personalsportrecord.com/privacy-policy/

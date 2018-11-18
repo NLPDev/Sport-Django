@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" style="height: 100%; background: #f1f1f1;">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Personal Sport Record</title>
+        <link href='https://fonts.googleapis.com/css?family=Karla:400,700|Poppins:500,600' rel='stylesheet' type='text/css' />
+    </head>
+
+    <style type="text/css">
+        @media only screen and (max-width: 599px) {
+	        body{ overflow-x: hidden; }
+            .content{ padding: 30px 15px !important; }
+            table{ width: 100% !important; }
+            .half-col{ display: block !important; width: 100% !important; text-align: start !important; }
+            .home-url{ display: block !important; float: none !important; }
+            .address{ margin-bottom: 5px !important; }
+        }
+        @media only screen and (max-width: 400px) {
+            h2{ font-size: 16px !important; }
+            .footer-bottom a{ display: block !important; }
+            .footer-bottom span{ display: none !important; }
+        }
+    </style>
+    {% load static %}
+    <body style="font-family:'Karla', 'Helvetica Neue', 'Arial', sans-serif; line-height: 1.5; width: 100%; margin: 0; max-width: 600px; display: block; margin: auto; border: 1px solid #e5e5e5;">
+    <table width="600" border="0" cellpadding="0" cellspacing="0" style="display: block; margin:auto;">
+        <tbody width="100%" style="position:relative;display:block;">
+            <tr class="header" style="display: block; background: white;">
+                <td style="padding: 10px 15px;">
+                    <img src="{% static "multidb_account/images/header-logo@2x.png" %}" alt="Personal Sport Record" style="width: 238px; height: auto;" />
+                </td>
+            </tr>
+            <tr class="content" style="display: block; padding: 40px 80px; background: white;">
+                <td>
+                    <h2 style="font-family: 'Poppins', 'Helvetica Neue', 'Arial', sans-serif; margin-top: 0; color: #008cd8;">Hi {{user.first_name}} {{user.last_name}} {{user.email}}</h2>
+                    <p>You've been invited to personal sport record.</p>
+                    <p>Please confirm that {{user.email}} is an e-mail address owned by you.</p>
+                    <a href="{{api_site}}{{ confirm_account_path }}{{ token }}" class="btn" style="font-family: 'Poppins', 'Helvetica Neue', 'Arial', sans-serif; color: #fff; font-style: normal; background-color: #008cd8; border: 1px solid #008cd8; display: block; text-decoration: none; transition: all 0.3s ease-in-out; text-align: center; width: 250px; margin: 35px auto; line-height: 50px;">Confirm</a>
+
+                    <p>Have an awesome day!<br/>Matt &amp; Steve<br/>Personal Sport Record</p>
+                </td>
+            </tr>
+            <tr class="footer-top" style="display:block; padding: 15px; padding-bottom: 10px; background-color: #f9f8f4;">
+                <td style="display: block;">
+                    <img src="{% static "multidb_account/images/footer-logo@2x.png" %}" alt="Personal Sport Record" style="width: 178px; height: auto;" />
+                    <a href="http://personalsportrecord.com" class="home-url" style="position: relative; font-size: 14px; color: #3f3f3f; margin-top: 2px; float: right;">www.personalsportrecord.com</a>
+                </td>
+            </tr>
+            <tr class="footer-bottom" style="display: block; background-color: #f9f8f4; padding: 15px; padding-top: 0; font-size: 13px; ">
+                <td>
+	                <p class="address" style="margin: 0;">451 Silverdale Place, Vancouver, BC, V7N 2Z6, Canada</p>
+                    <a href="http://personalsportrecord.com/contact-us/" style="text-decoration: none; color: #3f3f3f;">Contact Us</a><span>&nbsp;|&nbsp;</span>
+                    <a href="http://personalsportrecord.com/about-us/" style="text-decoration: none; color: #3f3f3f;">About Us</a><span>&nbsp;|&nbsp;</span>
+                    <a href="http://personalsportrecord.com/privacy-policy/" style="text-decoration: none; color: #3f3f3f;">Privacy Policy</a><span>&nbsp;|&nbsp;</span>
+                    <a href="{{app_site}}settings" style="text-decoration: none; color: #3f3f3f;">Settings</a>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </body>
+</html>

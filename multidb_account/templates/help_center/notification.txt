@@ -1,0 +1,13 @@
+New Help Center Report notification:
+
+Organisation: {{ obj.organization }}
+
+Coach name: {{ obj.coach_name }}
+
+Date: {{ obj.date }}
+
+Details: {{ obj.details }}
+
+Name: {{ obj.name }}
+
+User: {{ obj.owner.first_name }} {{ obj.owner.last_name }}

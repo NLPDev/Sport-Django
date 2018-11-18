@@ -1,0 +1,22 @@
+PROFILE_PICTURE_WIDTH = 96
+PROFILE_PICTURE_HEIGHT = 96
+
+USER_TYPE_COACH = 'coach'
+USER_TYPE_ATHLETE = 'athlete'
+USER_TYPE_ORG = 'organisation'
+
+MEASURING_METRIC = 'metric'
+MEASURING_IMPERIAL = 'imperial'
+
+TEAM_STATUS_ACTIVE = 'active'
+TEAM_STATUS_ARCHIVED = 'archived'
+
+INVITE_PENDING = 'pending'
+INVITE_ACCEPTED = 'accepted'
+INVITE_CANCELED = 'canceled'
+
+USER_INVITE_SALT = 'user_connection'
+USER_CONFIRM_ACCOUNT_SALT = 'confirm_account'
+
+VIDEO_YOUTUBE = 'youtube'
+VIDEO_VIMEO = 'vimeo'

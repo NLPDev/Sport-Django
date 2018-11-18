@@ -1,0 +1,17 @@
+New Organisation Support notification:
+
+Organisation: {{ obj.organisation.name }}
+
+Name: {{ obj.name }}
+
+User: {{ obj.owner.first_name }} {{ obj.owner.last_name }}
+
+Date: {{ obj.date }}
+
+Email: {{ obj.email }}
+
+Phone number: {{ obj.phone_number }}
+
+Type of assistance: {{ obj.support_type }}
+
+Details: {{ obj.details }}
