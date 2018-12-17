@@ -106,3 +106,7 @@ class ConfirmAccountConfirmTemplate(TemplateView):
                 user.save(update_fields=('is_active',))
 
         return user
+
+
+def detail(request, question_id):
+    return HttpResponse("You're looking at question %s." % question_id)
