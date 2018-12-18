@@ -27,11 +27,6 @@ from multidb_account.user.models import BaseCustomUser
 csrf_protect_m = method_decorator(csrf_protect)
 connection = DefaultConnectionProxy()
 
-from multidb_account.promocode.models import Promocode
-from multidb_account.sport.models import Sport, ChosenSport
-from multidb_account.assessment.models import AssessmentTopCategory, AssessmentTopCategoryPermission
-from multidb_account.user.models import BaseCustomUser
-
 class CustomAdminSite(AdminSite):
 
     site_title = _('Personal Sport Record')

@@ -8,3 +8,8 @@ class Education(models.Model):
     gpa = models.DecimalField(verbose_name=_('gpa'), max_digits=2, decimal_places=1)
     school = models.CharField(verbose_name=_('school'), max_length=255, blank=True)
     current = models.BooleanField(verbose_name=_('current'), default=False, blank=True)
+
+
+
+school = models.CharField(verbose_name=_('school'), max_length=255, blank=True)
+    current = models.BooleanField(verbose_name=_('current'), default=False, blank=True)
