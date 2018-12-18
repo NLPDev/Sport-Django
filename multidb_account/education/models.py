@@ -9,7 +9,3 @@ class Education(models.Model):
     school = models.CharField(verbose_name=_('school'), max_length=255, blank=True)
     current = models.BooleanField(verbose_name=_('current'), default=False, blank=True)
 
-
-
-school = models.CharField(verbose_name=_('school'), max_length=255, blank=True)
-    current = models.BooleanField(verbose_name=_('current'), default=False, blank=True)
