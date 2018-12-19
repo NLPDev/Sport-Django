@@ -35,6 +35,19 @@ class SportEngineGame(BaseSportEngineModel):
         return 'sport_engine_id=%i, title=%s' % (self.sport_engine_id, self.data.title)
 
 
+
+
+class SportEngineGame(BaseSportEngineModel):
+    sport_engine_teams = models.ManyToManyField(SportEngineTeam, related_name='sport_engine_games')
+    athletes = models.ManyToManyField('multidb_account.AthleteUser', blank=True, related_name='sport_engine_games')
+
+    class Meta:
+        db_table = 'sport_engine_game'
+        verbose_name_plural = _('games')
+
+    def __str__(self):
+        return 'sport_engine_id=%i, title=%s' % (self.sport_engine_id, self.data.title)
+
 class SportEngineEvent(BaseSportEngineModel):
     sport_engine_team = models.ForeignKey(SportEngineTeam, related_name='sport_engine_events')
     sport_engine_game = models.ForeignKey(SportEngineGame, related_name='sport_engine_events', null=True, blank=True)

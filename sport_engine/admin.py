@@ -22,20 +22,6 @@ class SportEngineEventAdmin(SportEngineBaseAdmin):
     list_display = ('sport_engine_id', 'sport_engine_team', 'sport_engine_game')
 
 
-
-
-
-class SportEngineTeamAdmin(SportEngineBaseAdmin):
-    list_display = ('sport_engine_id', 'team')
-
-
-class SportEngineGameAdmin(SportEngineBaseAdmin):
-    list_display = ('sport_engine_id',)
-
-
-class SportEngineEventAdmin(SportEngineBaseAdmin):
-    list_display = ('sport_engine_id', 'sport_engine_team', 'sport_engine_game')
-
 register_modeladmin_for_every_adminsite(SportEngineTeam, SportEngineTeamAdmin)
 register_modeladmin_for_every_adminsite(SportEngineGame, SportEngineGameAdmin)
 register_modeladmin_for_every_adminsite(SportEngineEvent, SportEngineEventAdmin)
