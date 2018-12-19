@@ -53,12 +53,7 @@ LOCAL_APPS = [
     'payment_gateway',
     'sport_engine',
 ]
-LOCAL_APPS = [
-    'multidb_account',
-    'rest_api',
-    'payment_gateway',
-    'sport_engine',
-]
+
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
