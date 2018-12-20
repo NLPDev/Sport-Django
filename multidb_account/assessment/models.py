@@ -171,6 +171,113 @@ class AssessorAssessedBase(models.Model):
         self.assessmenttopcategorypermission_set.all().delete()
 
 
+
+
+
+
+
+
+
+class Assessment(models.Model):
+    name = models.CharField(verbose_name=_('assessment name'), max_length=255,
+                            null=False, blank=False)
+    description = models.TextField(verbose_name=_('assessment description'), max_length=255, blank=True)
+    parent_sub_category = models.ForeignKey(AssessmentSubCategory)
+    format = models.ForeignKey(AssessmentFormat)
+    relationship_types = models.ManyToManyField(AssessmentRelationshipType, help_text=(
+        'One thing that is unique with PSR is defining clear relationships between the assessments and users. '
+        'There are three types.'
+    ))
+    is_private = models.BooleanField(default=False, blank=True)
+    is_public_everywhere = models.BooleanField(
+        default=False, blank=True, help_text='If set, treat it as a public one everywhere (teams, organisations, ...).')
+
+    class Meta:
+        ordering = ['name', ]
+        verbose_name = _('Metric')
+        verbose_name_plural = _('Metrics')
+
+    def __unicode__(self):
+        return self.name
+
+    def __str__(self):
+        private_string = '(P) ' if self.is_private else ''
+        return '%s%s - %s' % (private_string, self.parent_sub_category, self.name)
+
+    def get_top_category(self):
+        obj = self.parent_sub_category
+        while obj.parent_sub_category:
+            obj = obj.parent_sub_category
+        return obj.parent_top_category
+
+    def is_relationship_type_valid(self, assessed, assessor):
+        if assessor.get_user_type() == USER_TYPE_COACH and assessed.get_user_type() == USER_TYPE_ATHLETE:
+            return self.relationship_types.filter(type="coach_athlete").exists()
+        if assessor.get_user_type() == USER_TYPE_ATHLETE and assessed.get_user_type() == USER_TYPE_COACH:
+            return self.relationship_types.filter(type="athlete_coach").exists()
+        if assessor.id == assessed.id:
+            return self.relationship_types.filter(type="self").exists()
+        return False
+
+
+class AssessorAssessedBase(models.Model):
+    class Meta:
+        abstract = True
+
+    def get_user_type(self):
+        if self.athlete_id is not None:
+            return self.athlete.user.user_type
+        if self.coach_id is not None:
+            return self.coach.user.user_type
+        return None
+
+    def get_email(self):
+        if self.athlete_id is not None:
+            return self.athlete.user.email
+        if self.coach_id is not None:
+            return self.coach.user.email
+        return None
+
+    def get_user_id(self):
+        if self.athlete_id is not None:
+            return self.athlete.user.id
+        if self.coach_id is not None:
+            return self.coach.user.id
+        return None
+
+    def get_first_name(self):
+        if self.athlete_id is not None:
+            return self.athlete.user.first_name
+        if self.coach_id is not None:
+            return self.coach.user.first_name
+        return None
+
+    def get_last_name(self):
+        if self.athlete_id is not None:
+            return self.athlete.user.last_name
+        if self.coach_id is not None:
+            return self.coach.user.last_name
+        return None
+
+    def get_profile_picture_url(self):
+        if self.athlete_id is not None:
+            user = self.athlete.user
+        if self.coach_id is not None:
+            user = self.coach.user
+
+        if user.profile_picture and user.profile_picture.url:
+            return user.profile_picture.url
+
+        return None
+
+    def delete_all_assessment_permissions(self):
+        self.assessmenttopcategorypermission_set.all().delete()
+
+
+
+
+
+
 class Assessor(AssessorAssessedBase):
     athlete = models.OneToOneField(AthleteUser, null=True, blank=True, on_delete=models.CASCADE)
     coach = models.OneToOneField(CoachUser, null=True, blank=True, on_delete=models.CASCADE)
