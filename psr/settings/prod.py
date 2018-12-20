@@ -80,6 +80,18 @@ AWS_S3_SIGNATURE_VERSION = os.environ.get('AWS_S3_SIGNATURE_VERSION', 's3v4')
 AWS_QUERYSTRING_AUTH = False
 AWS_S3_FILE_OVERWRITE = True
 
+
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', '')
+AWS_STORAGE_DOMAIN = os.environ.get('AWS_STORAGE_DOMAIN', '')
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', '')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', '')
+
+AWS_S3_REGION_NAME = os.environ.get('AWS_S3_REGION_NAME', '') 
+AWS_S3_SIGNATURE_VERSION = os.environ.get('AWS_S3_SIGNATURE_VERSION', 's3v4')
+
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_FILE_OVERWRITE = True
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 STATICFILES_LOCATION = 'static'

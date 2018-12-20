@@ -26,11 +26,3 @@ register_modeladmin_for_every_adminsite(SportEngineTeam, SportEngineTeamAdmin)
 register_modeladmin_for_every_adminsite(SportEngineGame, SportEngineGameAdmin)
 register_modeladmin_for_every_adminsite(SportEngineEvent, SportEngineEventAdmin)
 
-
-
-
-
-
-register_modeladmin_for_every_adminsite(SportEngineTeam, SportEngineTeamAdmin)
-register_modeladmin_for_every_adminsite(SportEngineGame, SportEngineGameAdmin)
-register_modeladmin_for_every_adminsite(SportEngineEvent, SportEngineEventAdmin)
