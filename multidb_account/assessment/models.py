@@ -224,12 +224,3 @@ class AssessmentTopCategoryPermission(models.Model):
     assessment_top_category = models.ForeignKey(AssessmentTopCategory, on_delete=models.CASCADE)
     assessor_has_access = models.BooleanField(verbose_name=_('assessor has access'), default=False)
 
-class AssessmentTopCategoryPermission(models.Model):
-    class Meta:
-        db_table = 'multidb_account_assessment_top_category_permission'
-
-    assessed = models.ForeignKey(Assessed, on_delete=models.CASCADE)
-    assessor = models.ForeignKey(Assessor, on_delete=models.CASCADE)
-    assessment_top_category = models.ForeignKey(AssessmentTopCategory, on_delete=models.CASCADE)
-    assessor_has_access = models.BooleanField(verbose_name=_('assessor has access'), default=False)
-
