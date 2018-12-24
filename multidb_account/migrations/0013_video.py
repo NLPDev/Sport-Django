@@ -25,3 +25,21 @@ class Migration(migrations.Migration):
             ],
         ),
     ]
+
+
+
+
+
+
+operations = [
+        migrations.CreateModel(
+            name='Video',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('video_type', models.CharField(choices=[('youtube', 'Youtube'), ('vimeo', 'Vimeo')], max_length=7, verbose_name='video type')),
+                ('video_id', models.CharField(max_length=20, verbose_name='video id')),
+                ('date_added', models.DateTimeField(auto_now_add=True, verbose_name='date added')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='user')),
+            ],
+        ),
+    ]
