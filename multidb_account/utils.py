@@ -78,38 +78,3 @@ def dictfetchall(cursor):
 
 
 
-
-def get_localized_database(username):
-    '''
-    This function get the localized database name based on the user's email address.
-    :param username:
-    :return user:
-    '''
-    debug = getattr(settings, 'DEBUG', False)
-    localized_databases = getattr(settings, 'LOCALIZED_DATABASES', None)
-    UserModel = get_user_model()
-    for database in localized_databases:
-        try:
-            user = UserModel.objects.using(database).get(**{UserModel.USERNAME_FIELD: username})
-        except UserModel.DoesNotExist:
-            if debug:
-                print("DEBUG: multidb_auth_backend -- User NOT found in database: " + database)
-            user = None
-        if user:
-            if debug:
-                print("DEBUG: multidb_auth_backend -- User found in database: " + database)
-            break
-
-    if user:
-        return user.country
-    else:
-        return None
-
-
-def dictfetchall(cursor):
-    """ Return all rows from a cursor as a dict """
-    columns = [col[0] for col in cursor.description]
-    return [
-        dict(zip(columns, row))
-        for row in cursor.fetchall()
-    ]
