@@ -107,3 +107,41 @@ def drop_multidb():
     pg_drop_multidb()
     pg_drop_multidb_user()
     
+
+
+#-----------
+
+def pg_create_multidb():
+    _run_as_pg('psql -c "CREATE DATABASE %s;"' % ('psr_dev'))
+    _run_as_pg('psql -c "CREATE DATABASE %s;"' % ('psr_ca_dev'))
+    _run_as_pg('psql -c "CREATE DATABASE %s;"' % ('psr_us_dev'))
+
+def pg_drop_multidb():
+    _run_as_pg('psql -c "DROP DATABASE %s;"' % ('psr_dev'))
+    _run_as_pg('psql -c "DROP DATABASE %s;"' % ('psr_ca_dev'))
+    _run_as_pg('psql -c "DROP DATABASE %s;"' % ('psr_us_dev'))
+
+def pg_create_multidb_user():
+    _run_as_pg('psql -c "CREATE USER %s WITH PASSWORD \'%s\';"' % ('psr_dev','psr_dev'))
+    _run_as_pg('psql -c "CREATE USER %s WITH PASSWORD \'%s\';"' % ('psr_ca_dev','psr_ca_dev'))
+    _run_as_pg('psql -c "CREATE USER %s WITH PASSWORD \'%s\';"' % ('psr_us_dev','psr_us_dev'))
+
+def pg_drop_multidb_user():
+    _run_as_pg('psql -c "DROP USER %s;"' % ('psr_dev'))
+    _run_as_pg('psql -c "DROP USER %s;"' % ('psr_ca_dev'))
+    _run_as_pg('psql -c "DROP USER %s;"' % ('psr_us_dev'))
+
+def pg_grant_priv_multidb():
+    _run_as_pg('psql -c "GRANT ALL PRIVILEGES ON DATABASE %s TO %s;"' % ('psr_dev','psr_dev'))
+    _run_as_pg('psql -c "GRANT ALL PRIVILEGES ON DATABASE %s TO %s;"' % ('psr_ca_dev','psr_ca_dev'))
+    _run_as_pg('psql -c "GRANT ALL PRIVILEGES ON DATABASE %s TO %s;"' % ('psr_us_dev','psr_us_dev'))
+
+
+def set_multidb():
+    pg_create_multidb()
+    pg_create_multidb_user()
+    pg_grant_priv_multidb()
+
+def drop_multidb():
+    pg_drop_multidb()
+    pg_drop_multidb_user()
