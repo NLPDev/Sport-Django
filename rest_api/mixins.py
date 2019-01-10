@@ -17,6 +17,33 @@ class UserInviteSaltMixin(object):
     salt = USER_INVITE_SALT
 
 
+
+class PasswordSaltMixin(object):
+    salt = 'password_reset'
+
+
+class UserInviteSaltMixin(object):
+    salt = USER_INVITE_SALT
+
+class PasswordSaltMixin(object):
+    salt = 'password_reset'
+
+
+class UserInviteSaltMixin(object):
+    salt = USER_INVITE_SALT
+class PasswordSaltMixin(object):
+    salt = 'password_reset'
+
+
+class UserInviteSaltMixin(object):
+    salt = USER_INVITE_SALT
+class PasswordSaltMixin(object):
+    salt = 'password_reset'
+
+
+class UserInviteSaltMixin(object):
+    salt = USER_INVITE_SALT
+
 class ValidateInviteTokenMixin(serializers.Serializer):
     """
     Mixin to provide `validate_user_invite_token` method that checks invitation token and sets common attrs.
