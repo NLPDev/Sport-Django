@@ -18,31 +18,9 @@ class UserInviteSaltMixin(object):
 
 
 
-class PasswordSaltMixin(object):
-    salt = 'password_reset'
 
 
-class UserInviteSaltMixin(object):
-    salt = USER_INVITE_SALT
 
-class PasswordSaltMixin(object):
-    salt = 'password_reset'
-
-
-class UserInviteSaltMixin(object):
-    salt = USER_INVITE_SALT
-class PasswordSaltMixin(object):
-    salt = 'password_reset'
-
-
-class UserInviteSaltMixin(object):
-    salt = USER_INVITE_SALT
-class PasswordSaltMixin(object):
-    salt = 'password_reset'
-
-
-class UserInviteSaltMixin(object):
-    salt = USER_INVITE_SALT
 
 class ValidateInviteTokenMixin(serializers.Serializer):
     """
