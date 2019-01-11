@@ -185,3 +185,96 @@ class GoalTests(ApiTests):
         url = reverse_lazy('rest_api:user-goals', kwargs={'uid': 999})
         response = self.client.get(url, format='json', HTTP_AUTHORIZATION=auth)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def test_other_user_goals(self):
+        user = self.coach_ca
+        user2 = self.athlete_ca
+        user_alien = self.create_random_user(country='ca', user_type=USER_TYPE_COACH)
+        auth = 'JWT {}'.format(user.token)
+        auth2 = 'JWT {}'.format(user2.token)
+        auth_alien = 'JWT {}'.format(user_alien.token)
+        url = reverse_lazy('rest_api:goal-list')
+
+        # Create a goal by user1
+        data = {
+            'description': '...',
+            'achieve_by': (datetime.utcnow() + timedelta(weeks=4)).date(),
+        }
+        response = self.client.post(url, data, format='json', HTTP_AUTHORIZATION=auth)
+        goal = Goal.objects.using(user.country).get(pk=response.data['id'])
+
+        # Create a goal by user2
+        data = {
+            'description': '...#2',
+            'achieve_by': (datetime.utcnow() + timedelta(weeks=2)).date(),
+        }
+        response = self.client.post(url, data, format='json', HTTP_AUTHORIZATION=auth2)
+        goal2 = Goal.objects.using(user2.country).get(pk=response.data['id'])
+
+        # GET goals of user2 by user1 -> FAIL: not connected
+        url = reverse_lazy('rest_api:user-goals', kwargs={'uid': user2.id})
+        response = self.client.get(url, format='json', HTTP_AUTHORIZATION=auth)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        # GET goals of user1 by user2 -> FAIL: not connected
+        url = reverse_lazy('rest_api:user-goals', kwargs={'uid': user.id})
+        response = self.client.get(url, format='json', HTTP_AUTHORIZATION=auth2)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        # GET goals of user1 by alien_user -> FAIL: not connected
+        url = reverse_lazy('rest_api:user-goals', kwargs={'uid': user.id})
+        response = self.client.get(url, format='json', HTTP_AUTHORIZATION=auth_alien)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        # Connect user1 & user2 via Coaching
+        Coaching.objects.using(user.country).create(coach=user.coachuser, athlete=user2.athleteuser)
+
+        # GET goals of user2 by user1 -> FAIL: not connected
+        url = reverse_lazy('rest_api:user-goals', kwargs={'uid': user2.id})
+        response = self.client.get(url, format='json', HTTP_AUTHORIZATION=auth)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data[0]['id'], goal2.id)
+
+        # GET goals of user1 by user2 -> FAIL: not connected
+        url = reverse_lazy('rest_api:user-goals', kwargs={'uid': user.id})
+        response = self.client.get(url, format='json', HTTP_AUTHORIZATION=auth2)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data[0]['id'], goal.id)
+
+        # GET goals of user1 by alien_user -> FAIL: still not connected
+        url = reverse_lazy('rest_api:user-goals', kwargs={'uid': user.id})
+        response = self.client.get(url, format='json', HTTP_AUTHORIZATION=auth_alien)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        # PUT -> FAIL
+        response = self.client.put(url, format='json', HTTP_AUTHORIZATION=auth)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        # PATCH -> FAIL
+        response = self.client.patch(url, data, format='json', HTTP_AUTHORIZATION=auth)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        # DELETE -> FAIL
+        response = self.client.delete(url, data, format='json', HTTP_AUTHORIZATION=auth)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        # GET goals of bad user id -> FAIL
+        url = reverse_lazy('rest_api:user-goals', kwargs={'uid': 999})
+        response = self.client.get(url, format='json', HTTP_AUTHORIZATION=auth)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
