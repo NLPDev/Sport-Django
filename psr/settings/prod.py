@@ -63,6 +63,33 @@ DATABASES = {
     }
 }
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('DB_NAME', ''),
+        'USER': os.environ.get('DB_USER', ''),
+        'PASSWORD': os.environ.get('DB_PASSWORD', ''),
+        'HOST': os.environ.get('DB_HOST', ''),
+        'PORT': os.environ.get('DB_PORT', '5432'),
+    },
+    'ca': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('CA_DB_NAME', ''),
+        'USER': os.environ.get('CA_DB_USER', ''),
+        'PASSWORD': os.environ.get('CA_DB_PASSWORD', ''),
+        'HOST': os.environ.get('CA_DB_HOST', ''),
+        'PORT': os.environ.get('CA_DB_PORT', '5432'),
+    },
+    'us': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('US_DB_NAME', ''),
+        'USER': os.environ.get('US_DB_USER', ''),
+        'PASSWORD': os.environ.get('US_DB_PASSWORD', ''),
+        'HOST': os.environ.get('US_DB_HOST', ''),
+        'PORT': os.environ.get('US_DB_PORT', '5432'),
+    }
+}
+
 # STORAGE
 STATICFILES_STORAGE = 'psr.custom_storages.S3StaticStorage'
 DEFAULT_FILE_STORAGE = 'psr.custom_storages.S3MediaStorage'
