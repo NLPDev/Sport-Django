@@ -29,6 +29,13 @@ urlpatterns = [
 ]
 
 
+urlpatterns = [
+    url(r'^admin/', RedirectView.as_view(pattern_name='admin_default:index', permanent=True)),
+    url(r'^api/', include('rest_api.urls', namespace='rest_api')),
+
+    url(r'^{}(?P<token>[\w:-]+)/$'.format(django_settings.PSR_APP_CONFIRM_ACCOUNT_PATH),
+        ConfirmAccountConfirmTemplate.as_view()),
+]
 # Add admin site for every localized db
 urlpatterns = get_urlpattern_for_every_adminsite() + urlpatterns
 
