@@ -77,3 +77,50 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = '__all__'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class WebhookSerializer(serializers.Serializer):
+    id = serializers.CharField(required=True, allow_null=False)
+    type = serializers.CharField(required=True, allow_null=False)
+    livemode = serializers.BooleanField(required=True)
+    data = serializers.JSONField(required=True, allow_null=False)
+
+    def validate(self, data):
+        event_id = data.get('id', None)
+        event_type = data.get('type', None)
+
+        if get_event_from_localized_databases(event_id):
+            raise serializers.ValidationError({"error":  _("Duplicate Event")})
+
+        if event_id and event_type:
+            evt = stripe.Event.retrieve(event_id)
+            stripe_event = json.loads(
+                json.dumps(
+                    evt.to_dict(),
+                    sort_keys=True,
+                    cls=stripe.StripeObjectEncoder
+                )
+            )
+            if data["id"] == stripe_event["id"] and stripe_event["data"] == data["data"]:
+                return data
+            else:
+                raise serializers.ValidationError({"error": _("Event is not valid")})
+        else:
+            raise serializers.ValidationError({"error": _("Event must contain id, type and livemode")})
+
+
+class PaymentSerializer(serializers.Serializer):
+    plan = serializers.ChoiceField(choices=app_settings.PLANS_CHOICES, required=True)
+    token = serializers.CharField(required=True)
