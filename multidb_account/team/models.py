@@ -63,3 +63,20 @@ class Team(models.Model):
 
     def has_team_member(self, user: CoachUser or AthleteUser):
         return user in self.get_all_members()
+def add_baseuser(self, base_user):
+        if base_user.user_type == USER_TYPE_COACH:
+            self.coaches.add(base_user.typeduser)
+        if base_user.user_type == USER_TYPE_ATHLETE:
+            self.athletes.add(base_user.typeduser)
+
+    def get_all_coaches(self):
+        return list(self.coaches.all())
+
+    def get_all_athletes(self):
+        return list(self.athletes.all())
+
+    def get_all_members(self):
+        return self.get_all_athletes() + self.get_all_coaches()
+
+    def has_team_member(self, user: CoachUser or AthleteUser):
+        return user in self.get_all_members()
