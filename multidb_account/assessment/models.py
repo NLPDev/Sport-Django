@@ -176,61 +176,6 @@ class AssessorAssessedBase(models.Model):
 
 
 
-class AssessorAssessedBase(models.Model):
-    class Meta:
-        abstract = True
-
-    def get_user_type(self):
-        if self.athlete_id is not None:
-            return self.athlete.user.user_type
-        if self.coach_id is not None:
-            return self.coach.user.user_type
-        return None
-
-    def get_email(self):
-        if self.athlete_id is not None:
-            return self.athlete.user.email
-        if self.coach_id is not None:
-            return self.coach.user.email
-        return None
-
-    def get_user_id(self):
-        if self.athlete_id is not None:
-            return self.athlete.user.id
-        if self.coach_id is not None:
-            return self.coach.user.id
-        return None
-
-    def get_first_name(self):
-        if self.athlete_id is not None:
-            return self.athlete.user.first_name
-        if self.coach_id is not None:
-            return self.coach.user.first_name
-        return None
-
-    def get_last_name(self):
-        if self.athlete_id is not None:
-            return self.athlete.user.last_name
-        if self.coach_id is not None:
-            return self.coach.user.last_name
-        return None
-
-    def get_profile_picture_url(self):
-        if self.athlete_id is not None:
-            user = self.athlete.user
-        if self.coach_id is not None:
-            user = self.coach.user
-
-        if user.profile_picture and user.profile_picture.url:
-            return user.profile_picture.url
-
-        return None
-
-    def delete_all_assessment_permissions(self):
-        self.assessmenttopcategorypermission_set.all().delete()
-
-
-
 
 
 

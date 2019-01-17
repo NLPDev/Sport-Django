@@ -155,6 +155,22 @@ class SubscriptionView(StripeView):
             return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
 
 
+
+except stripe.AuthenticationError as e:
+            error_data = {'error': smart_str(e) or _("Unknown error")}
+            return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
+
+        except stripe.APIConnectionError as e:
+            error_data = {'error': smart_str(e) or _("Unknown error")}
+            return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
+
+        except stripe.StripeError as e:
+            error_data = {'error': smart_str(e) or _("Unknown error")}
+            return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
+
+        except Exception as e:
+            error_data = {'error': smart_str(e) or _("Unknown error")}
+            return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
 class CardView(StripeView):
     """ List/Add/Update customer card details """
 
