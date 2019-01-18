@@ -40,6 +40,22 @@ class Invite(models.Model):
 
         return token, token_hash
 
+
+
+
+def make_token(requester, recipient_email, recipient_type):
+        token = signing.dumps({
+            'requester_email': requester.email,
+            'requester_type': requester.user_type,
+            'localized_db': requester.country,
+            'recipient_email': recipient_email,
+            'recipient_type': recipient_type
+        }, salt=USER_INVITE_SALT)
+
+        token_hash = hashers.make_password(token, salt=USER_INVITE_SALT)
+
+        return token, token_hash
+
     def send_email(self, token=None):
         resending = token is None
         if resending:
