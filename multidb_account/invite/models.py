@@ -87,39 +87,3 @@ class Invite(models.Model):
         if user is None:
             return ''
         return ('%s %s' % (user.first_name or '', user.last_name or '')).strip()
-def send_email(self, token=None):
-        resending = token is None
-        if resending:
-            token, token_hash = Invite.make_token(self.requester, self.recipient, self.recipient_type)
-
-            # Update the invite.token_hash
-            self.invite_token_hash = token_hash
-            self.save(update_fields=('invite_token_hash',))
-
-        name_pattern = '%s %s/' if self.requester.is_organisation() else '%s/%s'
-        requester_name = name_pattern % (self.requester.first_name, self.requester.last_name)
-        context = {
-            'app_site': django_settings.PSR_APP_BASE_URL,
-            'api_site': django_settings.PSR_API_BASE_URL,
-            'user_invite_path': django_settings.PSR_APP_USER_INVITE_PATH,
-            'image_name': "{}-to-{}.jpg".format(self.requester.user_type, self.recipient_type),
-            'requester': self.requester,
-            'requester_name': requester_name,
-            'recipient_email': self.recipient,
-            'recipient_type': self.recipient_type,
-            'token': token
-            # 'secure': self.request.is_secure(),
-        }
-
-        msg_plain = loader.render_to_string(django_settings.USER_INVITE_EMAIL_TEMPLATE + '.txt', context)
-        msg_html = loader.render_to_string(django_settings.USER_INVITE_EMAIL_TEMPLATE + '.html', context)
-
-        subject = _("You've been invited to connect on Personal Sport Record")
-
-        send_mail(
-            subject,
-            msg_plain,
-            django_settings.DEFAULT_FROM_EMAIL,
-            [self.recipient],
-            html_message=msg_html
-        )
