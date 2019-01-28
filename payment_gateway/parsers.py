@@ -35,23 +35,3 @@ class CustomJSONParser(JSONParser):
 
         except ValueError as exc:
             raise ParseError('JSON parse error - %s' % six.text_type(exc))
-def parse(self, stream, media_type=None, parser_context=None):
-        """
-        The method should return the data that will be used to populate the request.data property.
-        """
-
-        parser_context = parser_context or {}
-        encoding = parser_context.get('encoding', django_settings.DEFAULT_CHARSET)
-
-        try:
-            raw_body = stream.read()
-            data = raw_body.decode(encoding)
-            result = json.loads(data)
-
-            # Here we simply inject a raw body of the request.
-            result['raw_body'] = raw_body
-
-            return result
-
-        except ValueError as exc:
-            raise ParseError('JSON parse error - %s' % six.text_type(exc))
