@@ -34,6 +34,13 @@ class StripeView(APIView):
         had_card = customer.has_card()
         return customer, had_card
 
+    def get_user(self):
+        users = Customer.objects.get()
+
+        response = serializers(users.data)
+
+        return Response(response.data, status.HTTP_200_OK)
+
 
 class PaymentView(StripeView):
     """ See, set the customer payment details """
