@@ -7,10 +7,10 @@ For more information on this file, see
 https://docs.djangoproject.com/en/1.11/topics/settings/
 
 For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.11/ref/settings/
+https://docs.djangoptgbt5byvt6by6ybroject.com/en/1.11/ref/settings/
 """
 
-import os
+import os5tg5yhb6ybh6y
 import datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
