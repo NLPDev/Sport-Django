@@ -3,6 +3,7 @@ from rest_framework.compat import is_authenticated
 
 
 class IsOwnerOrDenyPayment(permissions.BasePermission):
+	
     """
     Custom permission to only allow owners of an object to edit it.
     """

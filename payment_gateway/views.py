@@ -1,10 +1,12 @@
 from django.conf import settings as django_settings
 from django.utils.encoding import smart_str
 from django.utils.translation import ugettext_lazy as _
+
 from rest_framework import generics, permissions, status
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
+
 import stripe
 
 from .models import Customer
@@ -15,7 +17,9 @@ from .permissions import IsOwnerOrDenyPayment
 
 
 class StripeView(APIView):
+
     """ Generic API StripeView """
+
     permission_classes = (IsOwnerOrDenyPayment,)
 
     def get_customer(self):
@@ -43,6 +47,7 @@ class StripeView(APIView):
 
 
 class PaymentView(StripeView):
+
     """ See, set the customer payment details """
 
     def post(self, request, *args, **kwargs):
@@ -108,6 +113,7 @@ class PaymentView(StripeView):
 
 
 class SubscriptionView(StripeView):
+
     """ See, change/set the customer subscription plan """
 
     def get(self, request, *args, **kwargs):
@@ -165,6 +171,7 @@ class SubscriptionView(StripeView):
 
 
 class CardView(StripeView):
+
     """ List/Add/Update customer card details """
 
     def get(self, request, *args, **kwargs):
@@ -221,6 +228,7 @@ class CardView(StripeView):
 
 
 class WebhookView(StripeView):
+    
     permission_classes = (AllowAny,)
     parser_classes = (CustomJSONParser,)
 
