@@ -6,13 +6,14 @@ using namespace std;
 // Weights (stored in array w)
 // Number of distinct items (n)
 // Knapsack capacity W
+
 int knapSack(int v[], int w[], int n, int W)
 {
 	// T[i][j] stores the maximum value that can be attained with
 	// weight less than or equal to j using items up to first i items
 	int T[n+1][W+1];
 
-	for (int j = 0; j <= W; j++)
+	for (int j = 0; j <= W; j++)	//init table
 		T[0][j] = 0;
 
 	// memset (T[0], 0, sizeof T[0]);

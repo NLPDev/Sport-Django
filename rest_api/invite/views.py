@@ -60,13 +60,19 @@ class UserInviteResend(UserInviteSaltMixin, APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
 
+        response = serializer.data
+
+        print(65, response)
+
         return Response({"detail": _("User invite e-mails have been resent.")}, status=status.HTTP_200_OK)
 
 
 class UserPendingInviteList(UserInviteSaltMixin, APIView):
+
     """
     An endpoint to list user's invites (sent to him or created by him).
     """
+    
     permission_classes = (IsAuthenticated,)
 
     def get_object(self, request, pk):
