@@ -55,6 +55,7 @@ class PaymentView(StripeView):
 
         try:
             serializer = PaymentSerializer(data=request.data)
+            print(request.data)
             if serializer.is_valid():
 
                 # Get psr customer object
@@ -127,6 +128,7 @@ class SubscriptionView(StripeView):
     def put(self, request, *args, **kwargs):
         try:
             serializer = SubscriptionSerializer(data=request.data)
+            print(request.data)
 
             if serializer.is_valid():
                 plan = serializer.validated_data.get('plan', None)
@@ -155,17 +157,17 @@ class SubscriptionView(StripeView):
             error_data = {'error': smart_str(e) or _("Unknown error")}
             return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
 
-        except stripe.APIConnectionError as e:
-            error_data = {'error': smart_str(e) or _("Unknown error")}
-            return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
+        # except stripe.APIConnectionError as e:
+        #     error_data = {'error': smart_str(e) or _("Unknown error")}
+        #     return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
 
-        except stripe.StripeError as e:
-            error_data = {'error': smart_str(e) or _("Unknown error")}
-            return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
+        # except stripe.StripeError as e:
+        #     error_data = {'error': smart_str(e) or _("Unknown error")}
+        #     return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
 
-        except Exception as e:
-            error_data = {'error': smart_str(e) or _("Unknown error")}
-            return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
+        # except Exception as e:
+        #     error_data = {'error': smart_str(e) or _("Unknown error")}
+        #     return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
 
 
 
@@ -218,13 +220,13 @@ class CardView(StripeView):
             error_data = {'error': smart_str(e) or _("Unknown error")}
             return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
 
-        except stripe.StripeError as e:
-            error_data = {'error': smart_str(e) or _("Unknown error")}
-            return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
+        # except stripe.StripeError as e:
+        #     error_data = {'error': smart_str(e) or _("Unknown error")}
+        #     return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
 
-        except Exception as e:
-            error_data = {'error': smart_str(e) or _("Unknown error")}
-            return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
+        # except Exception as e:
+        #     error_data = {'error': smart_str(e) or _("Unknown error")}
+        #     return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
 
 
 class WebhookView(StripeView):
@@ -242,6 +244,8 @@ class WebhookView(StripeView):
             payload = raw_body.decode()
             sig_header = request.META.get('HTTP_STRIPE_SIGNATURE', None)
             event = stripe.Webhook.construct_event(payload, sig_header, self.stripe_webhook_secret)
+
+            print(event)
 
         except ValueError as e:
             # Invalid payload
