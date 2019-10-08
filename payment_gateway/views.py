@@ -36,6 +36,7 @@ class StripeView(APIView):
             customer.create_stripe_customer(user)
 
         had_card = customer.has_card()
+        print(has_card)
         return customer, had_card
 
     def get_user(self):
@@ -77,6 +78,7 @@ class PaymentView(StripeView):
             elif serializer.data.get('token') is None and serializer.data.get('plan') == 'not_needed':
 
                 # Get psr customer object
+                
                 customer, had_card = self.get_or_create_customer(request.user)
                 customer.post_add_update_plan(had_card, payment_status='not_needed')
 
@@ -157,19 +159,7 @@ class SubscriptionView(StripeView):
             error_data = {'error': smart_str(e) or _("Unknown error")}
             return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
 
-        # except stripe.APIConnectionError as e:
-        #     error_data = {'error': smart_str(e) or _("Unknown error")}
-        #     return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
-
-        # except stripe.StripeError as e:
-        #     error_data = {'error': smart_str(e) or _("Unknown error")}
-        #     return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
-
-        # except Exception as e:
-        #     error_data = {'error': smart_str(e) or _("Unknown error")}
-        #     return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
-
-
+       
 
 
 class CardView(StripeView):
@@ -221,10 +211,6 @@ class CardView(StripeView):
             return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
 
         # except stripe.StripeError as e:
-        #     error_data = {'error': smart_str(e) or _("Unknown error")}
-        #     return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
-
-        # except Exception as e:
         #     error_data = {'error': smart_str(e) or _("Unknown error")}
         #     return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
 
