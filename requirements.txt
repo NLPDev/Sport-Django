@@ -20,7 +20,7 @@ django-filter==1.0.2
 django-imagekit==4.0.1
 django-localflavor==1.5
 django-storages==1.5.2
-djangorestframework==3.6.2
+djangorestframework==3.11.2
 djangorestframework-jwt==1.11.0
 docker-py==1.7.2
 dockerpty==0.4.1
