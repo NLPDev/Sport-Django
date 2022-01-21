@@ -63,6 +63,6 @@ urllib3==1.21.1
 wcwidth==0.1.7
 websocket-client==0.40.0
 django-extensions==1.8.1
-ipython==6.1.0
+ipython==7.16.3
 django-autocomplete-light==3.2.10
 model-mommy==1.5.1
